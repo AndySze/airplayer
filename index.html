@@ -4,40 +4,28 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>AirPlayer by Tomohiro</title>
+
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-
+    <div class="wrapper">
       <header>
         <h1>AirPlayer</h1>
         <p>Command-line AirPlay video client for Apple TV</p>
+        <p class="view"><a href="https://github.com/Tomohiro/airplayer">View the Project on GitHub <small>Tomohiro/airplayer</small></a></p>
+        <ul>
+          <li><a href="https://github.com/Tomohiro/airplayer/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Tomohiro/airplayer/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Tomohiro/airplayer">View On <strong>GitHub</strong></a></li>
+        </ul>
       </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/Tomohiro/airplayer" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/Tomohiro/airplayer/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/Tomohiro/airplayer/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
-
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
       <section>
         <p><a href="https://secure.travis-ci.org/Tomohiro/airplayer"><img src="https://secure.travis-ci.org/Tomohiro/airplayer.png" alt="Build Status"></a>
 <a href="https://gemnasium.com/Tomohiro/airplayer"><img src="https://gemnasium.com/Tomohiro/airplayer.png" alt="Dependency Status"></a>
@@ -47,6 +35,7 @@
 <hr><h2>Requirements</h2>
 
 <ul>
+<li>OSX or Ubuntu</li>
 <li>Ruby 1.9.2 or later</li>
 <li>AppleTV 2G or later</li>
 </ul><h3>Ubuntu</h3>
@@ -72,36 +61,91 @@
 
 <h3>Play online video</h3>
 
-<div class="highlight"><pre><span class="nv">$ </span>airplayer play http://example.com/my-video.mp4
-AirPlay: http://example.com/my-video.mp4 to Apple TV<span class="o">(</span>10.0.1.18<span class="o">)</span>
-   Time: 00:00:31 |<span class="o">==============================================</span>| 100% Complete
+<div class="highlight"><pre><span class="nv">$ </span>airplayer play http://heinlein.local/Movies/AKIRA.m4v
+
+ Source: http://heinlein.local/misc/Movies/AKIRA.m4v
+  Title: AKIRA.m4v
+ Device: Apple TV <span class="o">(</span>10.0.1.2<span class="o">)</span>
+   Time: 00:04:25 |<span class="o">=</span>                                              | 3% Streaming
 </pre></div>
 
-<h3>Play local video</h3>
+<h3>Play video</h3>
 
-<div class="highlight"><pre><span class="nv">$ </span>airplayer play <span class="nv">$HOME</span>/Movies/video.mp4
-AirPlay: http://10.0.1.13:7070 to Apple TV<span class="o">(</span>10.0.1.18<span class="o">)</span>
-   Time: 00:00:31 |<span class="o">==============================================</span>| 100% Complete
+<div class="highlight"><pre><span class="nv">$ </span>airplayer play <span class="s1">'~/Movies/Trailers/007 SKYFALL.mp4'</span>
+
+ Source: http://10.0.1.6:7070
+  Title: SKYFALL.mp4
+ Device: Apple TV <span class="o">(</span>10.0.1.2<span class="o">)</span>
+   Time: 00:00:20 |<span class="o">=====</span>                                         | 11% Streaming
+</pre></div>
+
+<h3>Play all video in directory</h3>
+
+<div class="highlight"><pre><span class="nv">$ </span>airplayer play ~/Movies/Trailers
+
+ Source: http://10.0.1.6:7070
+  Title: 007 Casino Royale.mp4
+ Device: Apple TV <span class="o">(</span>10.0.1.2<span class="o">)</span>
+   Time: 00:02:33 |<span class="o">==============================================</span>| 100% Complete
+
+ Source: http://10.0.1.6:7070
+  Title: 007 Quantum Of Solace.mp4
+ Device: Apple TV <span class="o">(</span>10.0.1.2<span class="o">)</span>
+   Time: 00:02:01 |<span class="o">==============================================</span>| 100% Complete
+
+ Source: http://10.0.1.6:7070
+  Title: 007 SKYFALL.mp4
+ Device: Apple TV <span class="o">(</span>10.0.1.2<span class="o">)</span>
+   Time: 00:02:36 |<span class="o">==============================================</span>| 100% Complete
 </pre></div>
 
 <h3>Repeat play</h3>
 
-<div class="highlight"><pre><span class="nv">$ </span>airplayer play ./video.mp4 --repeat
-AirPlay: http://10.0.1.13:7070 to Apple TV<span class="o">(</span>10.0.1.18<span class="o">)</span>
-   Time: 00:00:31 |<span class="o">=====================</span>                         | 50% Streaming
+<div class="highlight"><pre><span class="nv">$ </span>airplayer play <span class="s1">'~/Movies/Trailers/007 SKYFALL.mp4'</span> --repeat
 </pre></div>
 
-<h2>LICENSE</h2>
+<h2>Supported MIME types</h2>
+
+<p><a href="http://developer.apple.com/library/ios/#documentation/AudioVideo/Conceptual/AirPlayGuide/PreparingYourMediaforAirPlay/PreparingYourMediaforAirPlay.html">AirPlay Overview - Configuring Your Server</a></p>
+
+<table>
+<tr>
+<th>File extension</th>
+<th>MIME type</th>
+<th>Ruby <code>mime-types</code>
+</th>
+</tr>
+<tr>
+<td>.ts</td>
+<td>video/MP2T</td>
+<td>video/MP2T</td>
+</tr>
+<tr>
+<td>.mov</td>
+<td>video/quicktime</td>
+<td>video/quicktime</td>
+</tr>
+<tr>
+<td>.m4v</td>
+<td>video/mpeg4</td>
+<td>video/vnd.objectvideo</td>
+</tr>
+<tr>
+<td>.mp4</td>
+<td>video/mpeg4</td>
+<td>application/mp4, video/mp4</td>
+</tr>
+</table><h2>LICENSE</h2>
 
 <p>© 2012 Tomohiro, TAIRA.
 This project is licensed under the MIT license.
 See LICENSE for details.</p>
       </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/Tomohiro">Tomohiro</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
-      </footer>
     </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/Tomohiro">Tomohiro</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
